@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37216.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuGarToolkit.WPF.GalleryApp", "SuGarToolkit.WPF.GalleryApp\SuGarToolkit.WPF.GalleryApp.csproj", "{B7804C23-D144-43EB-A564-DA9B1A411B1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuGarToolkit.WPF.TextBoxHelpers", "SuGarToolkit.WPF.TextBoxHelpers\SuGarToolkit.WPF.TextBoxHelpers.csproj", "{1ED275EF-88AA-4FE1-B3CD-F1AD5E4E36A0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7804C23-D144-43EB-A564-DA9B1A411B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7804C23-D144-43EB-A564-DA9B1A411B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7804C23-D144-43EB-A564-DA9B1A411B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7804C23-D144-43EB-A564-DA9B1A411B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ED275EF-88AA-4FE1-B3CD-F1AD5E4E36A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED275EF-88AA-4FE1-B3CD-F1AD5E4E36A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED275EF-88AA-4FE1-B3CD-F1AD5E4E36A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED275EF-88AA-4FE1-B3CD-F1AD5E4E36A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D0ABC1B-7166-4E84-B1CA-52B713771D1C}
+	EndGlobalSection
+EndGlobal
