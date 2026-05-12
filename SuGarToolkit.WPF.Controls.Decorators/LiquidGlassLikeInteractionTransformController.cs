@@ -148,8 +148,8 @@ public class LiquidGlassLikeInteractionTransformController
     {
         double absDeltaX = Math.Abs(DragDelta.X);
         double absDeltaY = Math.Abs(DragDelta.Y);
-        _translateTransform.X = _target.ActualWidth * absDeltaX / (absDeltaX + k);
-        _translateTransform.Y = _target.ActualHeight * absDeltaY / (absDeltaY + k);
+        _translateTransform.X = (_target.ActualWidth * 0.5 + 16) * absDeltaX / (absDeltaX + k);
+        _translateTransform.Y = (_target.ActualHeight * 0.5 + 16) * absDeltaY / (absDeltaY + k);
         if (DragDelta.X < 0)
         {
             _translateTransform.X = -_translateTransform.X;
