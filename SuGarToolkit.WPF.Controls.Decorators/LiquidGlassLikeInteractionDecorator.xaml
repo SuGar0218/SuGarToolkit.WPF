@@ -1,0 +1,11 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:SuGarToolkit.WPF.Controls.Decorators">
+
+    <Style BasedOn="{StaticResource {x:Type Decorator}}" TargetType="local:LiquidGlassLikeInteractionDecorator">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
+</ResourceDictionary>

@@ -26,4 +26,9 @@ public partial class MainWindow : Window
     {
         Debug.WriteLine($"TextBox_InputMethodEditingComplete");
     }
+
+    private void OnCapsuleButtonClick(object sender, RoutedEventArgs e)
+    {
+        MessageBox.Show(this, "Try to drag move this button", "CapsuleButton");
+    }
 }
