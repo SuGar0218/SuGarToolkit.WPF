@@ -31,4 +31,9 @@ public partial class MainWindow : Window
     {
         MessageBox.Show(this, "Try to drag move this button", "CapsuleButton");
     }
+
+    private void OnShowOverflowWindowButtonClick(object sender, RoutedEventArgs e)
+    {
+        new SampleOverflowWindow().Show();
+    }
 }

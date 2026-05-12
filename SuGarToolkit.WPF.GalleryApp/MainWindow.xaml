@@ -16,7 +16,12 @@
     <Window.Resources>
         <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="TextBox">
             <Setter Property="MinWidth" Value="30" />
+            <Setter Property="MinHeight" Value="30" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
+            <Setter Property="MinWidth" Value="30" />
+            <Setter Property="MinHeight" Value="30" />
         </Style>
     </Window.Resources>
 
@@ -62,5 +67,7 @@
                     FontSize="24" />
             </decorators:LiquidGlassLikeInteractionDecorator>
         </StackPanel>
+        <Border Height="8" />
+        <Button Content="OverflowWindow" Click="OnShowOverflowWindowButtonClick" />
     </StackPanel>
 </Window>

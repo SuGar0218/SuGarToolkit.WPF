@@ -10,8 +10,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Edge.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SuGarToolkit.WPF.Controls.Decorators\SuGarToolkit.WPF.Controls.Decorators.csproj" />
+    <ProjectReference Include="..\SuGarToolkit.WPF.Controls.Windows\SuGarToolkit.WPF.Controls.Windows.csproj" />
     <ProjectReference Include="..\SuGarToolkit.WPF.TextBoxHelpers\SuGarToolkit.WPF.TextBoxHelpers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Edge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
