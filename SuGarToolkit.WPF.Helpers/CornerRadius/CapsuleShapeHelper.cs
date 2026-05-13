@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace SuGarToolkit.WPF.GalleryApp.Controls;
+namespace SuGarToolkit.WPF.Helpers;
 
 public class CapsuleShapeHelper
 {

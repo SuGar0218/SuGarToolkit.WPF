@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
-namespace SuGarToolkit.WPF.TextBoxHelpers;
+namespace SuGarToolkit.WPF.Helpers;
 
 public partial class TextBoxInputMonitor : IDisposable
 {

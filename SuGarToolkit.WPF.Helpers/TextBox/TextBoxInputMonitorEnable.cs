@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 
-namespace SuGarToolkit.WPF.TextBoxHelpers;
+namespace SuGarToolkit.WPF.Helpers;
 
 public partial class TextBoxInputMonitor
 {
