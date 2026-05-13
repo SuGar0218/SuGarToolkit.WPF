@@ -43,15 +43,6 @@
                     VerticalAlignment="Top"
                     IsHitTestVisible="False"
                     Source="/Resources/Edge.png" />
-                <!--<controls:CapsuleButton
-                    Width="48"
-                    Height="48"
-                    Margin="16"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
-                    Content="√"
-                    FontFamily="MS Reference Sans Serif"
-                    FontSize="24" />-->
                 <Grid.Effect>
                     <DropShadowEffect
                         BlurRadius="16"

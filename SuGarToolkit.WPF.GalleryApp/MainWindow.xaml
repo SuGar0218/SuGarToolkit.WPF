@@ -32,42 +32,44 @@
             textBoxHelpers:TextBoxInputMonitor.IsEnabled="True"
             textBoxHelpers:TextBoxInputMonitor.TextReallyChanged="TextBox_TextReallyChanged" />
         <Border Height="8" />
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <TextBox controls:CornerRadiusHelper.CornerRadius="4" Text="Default TextBox with CornerRadius" />
+            <Border Width="8" />
+            <Button
+                Padding="8,0"
+                controls:CornerRadiusHelper.CornerRadius="4"
+                Content="Default Button with CornerRadius" />
+        </StackPanel>
+        <Border Height="8" />
         <decorators:LiquidGlassLikeInteractionDecorator HorizontalAlignment="Center">
-            <Border
-                Background="Transparent"
-                BorderBrush="Gray"
-                BorderThickness="1"
-                CornerRadius="15">
-                <TextBox
-                    Width="240"
-                    Height="30"
-                    Margin="8,0"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    BorderThickness="0" />
-            </Border>
+            <TextBox
+                Width="240"
+                Height="30"
+                controls:CapsuleShapeHelper.ShapeIntoCapsule="True" />
         </decorators:LiquidGlassLikeInteractionDecorator>
         <Border Height="8" />
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
             <Border Width="8" />
             <decorators:LiquidGlassLikeInteractionDecorator>
-                <controls:CapsuleButton
+                <Button
                     Height="30"
                     Padding="8,0"
+                    controls:CapsuleShapeHelper.ShapeIntoCapsule="True"
                     Click="OnCapsuleButtonClick"
-                    Content="LiquidGlass like button" />
+                    Content="Default Button with capsule shape" />
             </decorators:LiquidGlassLikeInteractionDecorator>
             <Border Width="8" />
             <decorators:LiquidGlassLikeInteractionDecorator>
-                <controls:CapsuleButton
+                <Button
                     Width="30"
                     Height="30"
+                    controls:CapsuleShapeHelper.ShapeIntoCapsule="True"
                     Content="+"
                     FontFamily="Microsoft Sans Serif"
                     FontSize="24" />
             </decorators:LiquidGlassLikeInteractionDecorator>
         </StackPanel>
         <Border Height="8" />
-        <Button Content="OverflowWindow" Click="OnShowOverflowWindowButtonClick" />
+        <Button Click="OnShowOverflowWindowButtonClick" Content="OverflowWindow" />
     </StackPanel>
 </Window>
