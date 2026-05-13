@@ -13,35 +13,27 @@ namespace SuGarToolkit.WPF.Controls.Decorators
 
         public LiquidGlassLikeInteractionDecorator()
         {
-            _controller = new LiquidGlassLikeInteractionTransformController(this)
-            {
-                ResetAnimationSeconds = 0.382
-            };
-            _controller.TransformOriginChanged += OnControllerTransformOriginChanged;
+            _controller = new LiquidGlassLikeInteractionTransformController(this);
             RenderTransform = _controller.Transform;
             RenderTransformOrigin = new Point(0.5, 0.5);
+            AddHandler(MouseDownEvent, new MouseButtonEventHandler(OnMouseDown), handledEventsToo: true);
+            AddHandler(MouseMoveEvent, new MouseEventHandler(OnMouseMove), handledEventsToo: true);
+            AddHandler(MouseUpEvent, new MouseButtonEventHandler(OnMouseUp), handledEventsToo: true);
         }
 
         private readonly LiquidGlassLikeInteractionTransformController _controller;
 
-        private void OnControllerTransformOriginChanged(object? sender, EventArgs e)
-        {
-            RenderTransformOrigin = _controller.TransformOrigin;
-        }
-
         private bool _isMouseDown;
         private Point _mouseDownPosition;
 
-        protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            base.OnPreviewMouseDown(e);
             _isMouseDown = true;
             _mouseDownPosition = e.GetPosition(Window.GetWindow(this));
         }
 
-        protected override void OnPreviewMouseMove(MouseEventArgs e)
+        private void OnMouseMove(object sender, MouseEventArgs e)
         {
-            base.OnPreviewMouseMove(e);
             if (!_isMouseDown)
                 return;
 
@@ -52,9 +44,8 @@ namespace SuGarToolkit.WPF.Controls.Decorators
             }
         }
 
-        protected override void OnPreviewMouseUp(MouseButtonEventArgs e)
+        private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
-            base.OnPreviewMouseUp(e);
             if (!_isMouseDown)
                 return;
 

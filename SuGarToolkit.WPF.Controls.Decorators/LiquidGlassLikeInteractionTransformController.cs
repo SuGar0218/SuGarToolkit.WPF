@@ -22,7 +22,6 @@ public class LiquidGlassLikeInteractionTransformController
         _scaleTransfromResetYAnimation.EasingFunction = _easingFunction;
         _translateTransformResetXAnimation.EasingFunction = _easingFunction;
         _translateTransformResetYAnimation.EasingFunction = _easingFunction;
-        _resetStoryboard.FillBehavior = FillBehavior.Stop;
         _resetStoryboard.Children =
         [
             _scaleTransfromResetXAnimation,
@@ -30,6 +29,7 @@ public class LiquidGlassLikeInteractionTransformController
             _translateTransformResetXAnimation,
             _translateTransformResetYAnimation
         ];
+        _resetStoryboard.FillBehavior = FillBehavior.Stop;
         _resetStoryboard.Completed += OnResetStoryboardCompleted;
         NameScope.SetNameScope(_target, new NameScope());
         _target.RegisterName(nameof(_scaleTransform), _scaleTransform);
@@ -42,6 +42,7 @@ public class LiquidGlassLikeInteractionTransformController
         Storyboard.SetTargetProperty(_translateTransformResetXAnimation, new PropertyPath(TranslateTransform.XProperty));
         Storyboard.SetTargetName(_translateTransformResetYAnimation, nameof(_translateTransform));
         Storyboard.SetTargetProperty(_translateTransformResetYAnimation, new PropertyPath(TranslateTransform.YProperty));
+        ResetAnimationSeconds = 0.382;
     }
 
     private readonly FrameworkElement _target;
@@ -58,14 +59,11 @@ public class LiquidGlassLikeInteractionTransformController
         Amplitude = 0.5
     };
 
-    private readonly Storyboard _resetStoryboard = new Storyboard();
-
-    public event EventHandler? TransformMatrixChanged;
-    public event EventHandler? TransformOriginChanged;
+    private readonly Storyboard _resetStoryboard = new();
 
     public Transform Transform => _transformGroup;
 
-    private Vector _dragDelta = new Vector(0, 0);
+    private Vector _dragDelta;
 
     public Vector DragDelta
     {
@@ -77,35 +75,22 @@ public class LiquidGlassLikeInteractionTransformController
         }
     }
 
-    public Point _transformOrigin;
-
-    public Point TransformOrigin
-    {
-        get => _transformOrigin;
-        private set
-        {
-            if (_transformOrigin == value)
-                return;
-
-            _transformOrigin = value;
-            TransformOriginChanged?.Invoke(this, EventArgs.Empty);
-        }
-    }
-
-    private double _resetAnimationSeconds;
-
     public double ResetAnimationSeconds
     {
-        get => _resetAnimationSeconds;
+        get => field;
         set
         {
-            _resetAnimationSeconds = value;
+            field = value;
             OnResetAnimationSecondsChanged();
         }
     }
 
     public void Reset()
     {
+        if (DragDelta.X == 0 && DragDelta.Y == 0)
+            return;
+
+        _dragDelta = new Vector(0, 0);
         _resetStoryboard.Begin(_target);
     }
 
@@ -115,7 +100,6 @@ public class LiquidGlassLikeInteractionTransformController
         _scaleTransform.ScaleY = 1;
         _translateTransform.X = 0;
         _translateTransform.Y = 0;
-        _resetStoryboard.Stop();
     }
 
     private void OnResetAnimationSecondsChanged()
