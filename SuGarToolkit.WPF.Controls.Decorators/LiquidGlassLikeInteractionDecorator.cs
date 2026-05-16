@@ -29,7 +29,7 @@ namespace SuGarToolkit.WPF.Controls.Decorators
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             _isMouseDown = true;
-            _mouseDownPosition = e.GetPosition(Window.GetWindow(this));
+            _mouseDownPosition = e.GetPosition(this);
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -37,11 +37,12 @@ namespace SuGarToolkit.WPF.Controls.Decorators
             if (!_isMouseDown)
                 return;
 
-            _controller.DragDelta = e.GetPosition(Window.GetWindow(this)) - _mouseDownPosition;
-            if (Math.Abs(_controller.DragDelta.X) > double.Epsilon || Math.Abs(_controller.DragDelta.Y) > double.Epsilon)
-            {
-                CaptureMouse();
-            }
+            Vector dragDelta = e.GetPosition(this) - _mouseDownPosition;
+            if (Math.Abs(dragDelta.X) <= double.Epsilon && Math.Abs(dragDelta.Y) <= double.Epsilon)
+                return;
+
+            CaptureMouse();
+            _controller.DragDelta = dragDelta;
         }
 
         private void OnMouseUp(object sender, MouseButtonEventArgs e)

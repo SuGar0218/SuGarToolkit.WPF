@@ -19,14 +19,14 @@ public class LiquidGlassLikeInteractionTransformController
                 _translateTransform
             ]
         };
-        _scaleTransfromResetXAnimation.EasingFunction = _easingFunction;
-        _scaleTransfromResetYAnimation.EasingFunction = _easingFunction;
+        _scaleTransformResetXAnimation.EasingFunction = _easingFunction;
+        _scaleTransformResetYAnimation.EasingFunction = _easingFunction;
         _translateTransformResetXAnimation.EasingFunction = _easingFunction;
         _translateTransformResetYAnimation.EasingFunction = _easingFunction;
         _resetStoryboard.Children =
         [
-            _scaleTransfromResetXAnimation,
-            _scaleTransfromResetYAnimation,
+            _scaleTransformResetXAnimation,
+            _scaleTransformResetYAnimation,
             _translateTransformResetXAnimation,
             _translateTransformResetYAnimation
         ];
@@ -35,10 +35,10 @@ public class LiquidGlassLikeInteractionTransformController
         NameScope.SetNameScope(_target, new NameScope());
         _target.RegisterName(nameof(_scaleTransform), _scaleTransform);
         _target.RegisterName(nameof(_translateTransform), _translateTransform);
-        Storyboard.SetTargetName(_scaleTransfromResetXAnimation, nameof(_scaleTransform));
-        Storyboard.SetTargetProperty(_scaleTransfromResetXAnimation, new PropertyPath(ScaleTransform.ScaleXProperty));
-        Storyboard.SetTargetName(_scaleTransfromResetYAnimation, nameof(_scaleTransform));
-        Storyboard.SetTargetProperty(_scaleTransfromResetYAnimation, new PropertyPath(ScaleTransform.ScaleYProperty));
+        Storyboard.SetTargetName(_scaleTransformResetXAnimation, nameof(_scaleTransform));
+        Storyboard.SetTargetProperty(_scaleTransformResetXAnimation, new PropertyPath(ScaleTransform.ScaleXProperty));
+        Storyboard.SetTargetName(_scaleTransformResetYAnimation, nameof(_scaleTransform));
+        Storyboard.SetTargetProperty(_scaleTransformResetYAnimation, new PropertyPath(ScaleTransform.ScaleYProperty));
         Storyboard.SetTargetName(_translateTransformResetXAnimation, nameof(_translateTransform));
         Storyboard.SetTargetProperty(_translateTransformResetXAnimation, new PropertyPath(TranslateTransform.XProperty));
         Storyboard.SetTargetName(_translateTransformResetYAnimation, nameof(_translateTransform));
@@ -49,8 +49,8 @@ public class LiquidGlassLikeInteractionTransformController
     private readonly FrameworkElement _target;
     private readonly TransformGroup _transformGroup;
     private readonly ScaleTransform _scaleTransform = new ScaleTransform(1, 1);
-    private readonly DoubleAnimation _scaleTransfromResetXAnimation = new DoubleAnimation(1, default);
-    private readonly DoubleAnimation _scaleTransfromResetYAnimation = new DoubleAnimation(1, default);
+    private readonly DoubleAnimation _scaleTransformResetXAnimation = new DoubleAnimation(1, default);
+    private readonly DoubleAnimation _scaleTransformResetYAnimation = new DoubleAnimation(1, default);
     private readonly TranslateTransform _translateTransform = new TranslateTransform(0, 0);
     private readonly DoubleAnimation _translateTransformResetXAnimation = new DoubleAnimation(0, default);
     private readonly DoubleAnimation _translateTransformResetYAnimation = new DoubleAnimation(0, default);
@@ -112,10 +112,11 @@ public class LiquidGlassLikeInteractionTransformController
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void OnResetAnimationSecondsChanged()
     {
-        _scaleTransfromResetXAnimation.Duration = TimeSpan.FromSeconds(ResetAnimationSeconds);
-        _scaleTransfromResetYAnimation.Duration = TimeSpan.FromSeconds(ResetAnimationSeconds);
-        _translateTransformResetXAnimation.Duration = TimeSpan.FromSeconds(ResetAnimationSeconds);
-        _translateTransformResetYAnimation.Duration = TimeSpan.FromSeconds(ResetAnimationSeconds);
+        TimeSpan duration = TimeSpan.FromSeconds(ResetAnimationSeconds);
+        _scaleTransformResetXAnimation.Duration = duration;
+        _scaleTransformResetYAnimation.Duration = duration;
+        _translateTransformResetXAnimation.Duration = duration;
+        _translateTransformResetYAnimation.Duration = duration;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -137,15 +138,7 @@ public class LiquidGlassLikeInteractionTransformController
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void RefreshTranslateTransform()
     {
-        _translateTransform.X = _stretchCalculator.OffsetX;
-        _translateTransform.Y = _stretchCalculator.OffsetY;
-        if (DragDelta.X < 0)
-        {
-            _translateTransform.X = -_translateTransform.X;
-        }
-        if (DragDelta.Y < 0)
-        {
-            _translateTransform.Y = -_translateTransform.Y;
-        }
+        _translateTransform.X = Math.Sign(DragDelta.X) * _stretchCalculator.OffsetX;
+        _translateTransform.Y = Math.Sign(DragDelta.Y) * _stretchCalculator.OffsetY;
     }
 }
