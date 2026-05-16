@@ -6,8 +6,8 @@ namespace SuGarToolkit.WPF.Helpers;
 
 public class CornerRadiusHelper
 {
-    public static CornerRadius GetCornerRadius(FrameworkElement target) => (CornerRadius) target.GetValue(CornerRadiusProperty);
-    public static void SetCornerRadius(FrameworkElement target, CornerRadius value) => target.SetValue(CornerRadiusProperty, value);
+    public static CornerRadius GetCornerRadius(Control target) => (CornerRadius) target.GetValue(CornerRadiusProperty);
+    public static void SetCornerRadius(Control target, CornerRadius value) => target.SetValue(CornerRadiusProperty, value);
 
     public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.RegisterAttached(
         "CornerRadius",
