@@ -5,8 +5,19 @@ namespace SuGarToolkit.WPF.Controls.Decorators;
 
 public class LiquidGlassLikeStretchCalculator
 {
-    public Size OriginalSize { get; set; }
+    public Size OriginalSize
+    {
+        get => field;
+        set
+        {
+            field = value;
+            ExpandScale = 1 + 16 / Math.Max(OriginalSize.Width, OriginalSize.Height);
+        }
+    }
+
     public Vector DragDelta { get; set; }
+
+    public double ExpandScale { get; private set; }
 
     public double StretchX { get; private set; }
     public double StretchY { get; private set; }
@@ -19,8 +30,8 @@ public class LiquidGlassLikeStretchCalculator
     {
         double absDeltaX = Math.Abs(DragDelta.X);
         double absDeltaY = Math.Abs(DragDelta.Y);
-        StretchX = _axialStretchingFunction.Calculate(absDeltaX) - _verticalShrinkFunction.Calculate(absDeltaY) * OriginalSize.Width;
-        StretchY = _axialStretchingFunction.Calculate(absDeltaY) - _verticalShrinkFunction.Calculate(absDeltaX) * OriginalSize.Height;
+        StretchX = _stretchingFunction.Calculate(absDeltaX) - _shrinkFunction.Calculate(absDeltaY) * OriginalSize.Width;
+        StretchY = _stretchingFunction.Calculate(absDeltaY) - _shrinkFunction.Calculate(absDeltaX) * OriginalSize.Height;
         OffsetX = _offsetFunction.Calculate(absDeltaX);
         OffsetY = _offsetFunction.Calculate(absDeltaY);
     }
@@ -28,7 +39,7 @@ public class LiquidGlassLikeStretchCalculator
     /// <summary>
     /// Absolutely stretch.
     /// </summary>
-    private static readonly SaturatingFunction _axialStretchingFunction = new()
+    private static readonly SaturatingFunction _stretchingFunction = new()
     {
         Limit = 16,
         Growth = -618
@@ -37,7 +48,7 @@ public class LiquidGlassLikeStretchCalculator
     /// <summary>
     /// Relatively shrink.
     /// </summary>
-    private static readonly SaturatingFunction _verticalShrinkFunction = new()
+    private static readonly SaturatingFunction _shrinkFunction = new()
     {
         Limit = 0.382,
         Growth = -618

@@ -30,6 +30,7 @@ public class LiquidGlassLikeInteractionDecorator : Decorator
     {
         _isMouseDown = true;
         _mouseDownPosition = e.GetPosition(this);
+        _controller.Begin();
     }
 
     private void OnMouseMove(object sender, MouseEventArgs e)
@@ -50,10 +51,8 @@ public class LiquidGlassLikeInteractionDecorator : Decorator
         if (!_isMouseDown)
             return;
 
-        if (IsMouseCaptured)
-            ReleaseMouseCapture();
-
         _isMouseDown = false;
-        _controller.Reset();
+        ReleaseMouseCapture();
+        Dispatcher.BeginInvoke(_controller.Reset);
     }
 }
