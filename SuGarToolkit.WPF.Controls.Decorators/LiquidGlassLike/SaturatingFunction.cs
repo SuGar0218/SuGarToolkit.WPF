@@ -24,7 +24,7 @@ public class SaturatingFunction
             throw new InvalidOperationException("x ≥ 0");
 #endif
         if (b == 0)
-            return Limit;
+            return k;
 
         if (x == 0)
             return 0;

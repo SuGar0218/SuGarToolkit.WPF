@@ -23,14 +23,17 @@ public class LiquidGlassLikeInteractionTransformController
         _scaleTransformResetYAnimation.EasingFunction = _easingFunction;
         _translateTransformResetXAnimation.EasingFunction = _easingFunction;
         _translateTransformResetYAnimation.EasingFunction = _easingFunction;
-        _resetStoryboard.Children =
-        [
-            _scaleTransformResetXAnimation,
-            _scaleTransformResetYAnimation,
-            _translateTransformResetXAnimation,
-            _translateTransformResetYAnimation
-        ];
-        _resetStoryboard.FillBehavior = FillBehavior.Stop;
+        _resetStoryboard = new Storyboard
+        {
+            FillBehavior = FillBehavior.Stop,
+            Children =
+            [
+                _scaleTransformResetXAnimation,
+                _scaleTransformResetYAnimation,
+                _translateTransformResetXAnimation,
+                _translateTransformResetYAnimation
+            ]
+        };
         _resetStoryboard.Completed += OnResetStoryboardCompleted;
         NameScope.SetNameScope(_target, new NameScope());
         _target.RegisterName(nameof(_scaleTransform), _scaleTransform);
@@ -48,18 +51,18 @@ public class LiquidGlassLikeInteractionTransformController
 
     private readonly FrameworkElement _target;
     private readonly TransformGroup _transformGroup;
-    private readonly ScaleTransform _scaleTransform = new ScaleTransform(1, 1);
-    private readonly DoubleAnimation _scaleTransformResetXAnimation = new DoubleAnimation(1, default);
-    private readonly DoubleAnimation _scaleTransformResetYAnimation = new DoubleAnimation(1, default);
-    private readonly TranslateTransform _translateTransform = new TranslateTransform(0, 0);
-    private readonly DoubleAnimation _translateTransformResetXAnimation = new DoubleAnimation(0, default);
-    private readonly DoubleAnimation _translateTransformResetYAnimation = new DoubleAnimation(0, default);
+    private readonly ScaleTransform _scaleTransform = new(1, 1);
+    private readonly DoubleAnimation _scaleTransformResetXAnimation = new() { To = 1 };
+    private readonly DoubleAnimation _scaleTransformResetYAnimation = new() { To = 1 };
+    private readonly TranslateTransform _translateTransform = new(0, 0);
+    private readonly DoubleAnimation _translateTransformResetXAnimation = new() { To = 0 };
+    private readonly DoubleAnimation _translateTransformResetYAnimation = new() { To = 0 };
     private readonly IEasingFunction _easingFunction = new BackEase
     {
         EasingMode = EasingMode.EaseOut,
         Amplitude = 0.5
     };
-    private readonly Storyboard _resetStoryboard = new();
+    private readonly Storyboard _resetStoryboard;
     private readonly LiquidGlassLikeStretchCalculator _stretchCalculator = new();
 
     public Transform Transform => _transformGroup;
