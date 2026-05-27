@@ -1,74 +1,91 @@
 ﻿<Window
-    x:Class="SuGarToolkit.WPF.GalleryApp.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:decorators="clr-namespace:SuGarToolkit.WPF.Controls.Decorators;assembly=SuGarToolkit.WPF.Controls.Decorators"
-    xmlns:helpers="clr-namespace:SuGarToolkit.WPF.Helpers;assembly=SuGarToolkit.WPF.Helpers"
-    xmlns:local="clr-namespace:SuGarToolkit.WPF.GalleryApp"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
-    Width="800"
-    Height="450"
-    mc:Ignorable="d">
+	x:Class="SuGarToolkit.WPF.GalleryApp.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="clr-namespace:SuGarToolkit.WPF.Controls;assembly=SuGarToolkit.WPF.Controls"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:decorators="clr-namespace:SuGarToolkit.WPF.Controls.Decorators;assembly=SuGarToolkit.WPF.Controls.Decorators"
+	xmlns:helpers="clr-namespace:SuGarToolkit.WPF.Helpers;assembly=SuGarToolkit.WPF.Helpers"
+	xmlns:local="clr-namespace:SuGarToolkit.WPF.GalleryApp"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="MainWindow"
+	Width="800"
+	Height="450"
+	mc:Ignorable="d">
 
-    <Window.Resources>
-        <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="TextBox">
-            <Setter Property="MinWidth" Value="30" />
-            <Setter Property="MinHeight" Value="30" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-        </Style>
-        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
-            <Setter Property="MinWidth" Value="30" />
-            <Setter Property="MinHeight" Value="30" />
-        </Style>
-    </Window.Resources>
+	<Window.Resources>
+		<Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="TextBox">
+			<Setter Property="MinWidth" Value="30" />
+			<Setter Property="MinHeight" Value="30" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+		<Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
+			<Setter Property="MinWidth" Value="30" />
+			<Setter Property="MinHeight" Value="30" />
+		</Style>
+	</Window.Resources>
 
-    <StackPanel>
-        <TextBox
-            helpers:TextBoxInputMonitor.InputMethodEditingComplete="TextBox_InputMethodEditingComplete"
-            helpers:TextBoxInputMonitor.InputMethodEditingStart="TextBox_InputMethodEditingStart"
-            helpers:TextBoxInputMonitor.IsEnabled="True"
-            helpers:TextBoxInputMonitor.TextReallyChanged="TextBox_TextReallyChanged" />
-        <Border Height="8" />
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-            <TextBox helpers:CornerRadiusHelper.CornerRadius="4" Text="Default TextBox with CornerRadius" />
-            <Border Width="8" />
-            <Button
-                Padding="8,0"
-                helpers:CornerRadiusHelper.CornerRadius="4"
-                Content="Default Button with CornerRadius" />
-        </StackPanel>
-        <Border Height="8" />
-        <decorators:LiquidGlassLikeInteractionDecorator HorizontalAlignment="Center">
-            <TextBox
-                Width="240"
-                Height="30"
-                helpers:CapsuleShapeHelper.ShapeIntoCapsule="True" />
-        </decorators:LiquidGlassLikeInteractionDecorator>
-        <Border Height="8" />
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-            <Border Width="8" />
-            <decorators:LiquidGlassLikeInteractionDecorator>
-                <Button
-                    Height="30"
-                    Padding="8,0"
-                    helpers:CapsuleShapeHelper.ShapeIntoCapsule="True"
-                    Click="OnCapsuleButtonClick"
-                    Content="Default Button with capsule shape" />
-            </decorators:LiquidGlassLikeInteractionDecorator>
-            <Border Width="8" />
-            <decorators:LiquidGlassLikeInteractionDecorator>
-                <Button
-                    Width="30"
-                    Height="30"
-                    helpers:CapsuleShapeHelper.ShapeIntoCapsule="True"
-                    Content="+"
-                    FontFamily="Microsoft Sans Serif"
-                    FontSize="24" />
-            </decorators:LiquidGlassLikeInteractionDecorator>
-        </StackPanel>
-        <Border Height="8" />
-        <Button Click="OnShowOverflowWindowButtonClick" Content="OverflowWindow" />
-    </StackPanel>
+	<StackPanel>
+		<TextBox
+			helpers:TextBoxInputMonitor.InputMethodEditingComplete="TextBox_InputMethodEditingComplete"
+			helpers:TextBoxInputMonitor.InputMethodEditingStart="TextBox_InputMethodEditingStart"
+			helpers:TextBoxInputMonitor.IsEnabled="True"
+			helpers:TextBoxInputMonitor.TextReallyChanged="TextBox_TextReallyChanged" />
+		<Border Height="8" />
+		<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+			<TextBox helpers:CornerRadiusHelper.CornerRadius="4" Text="Default TextBox with CornerRadius" />
+			<Border Width="8" />
+			<Button
+				Padding="8,0"
+				helpers:CornerRadiusHelper.CornerRadius="4"
+				Content="Default Button with CornerRadius" />
+		</StackPanel>
+		<Border Height="8" />
+		<decorators:LiquidGlassLikeInteractionDecorator HorizontalAlignment="Center">
+			<TextBox
+				Width="240"
+				Height="30"
+				helpers:CapsuleShapeHelper.ShapeIntoCapsule="True" />
+		</decorators:LiquidGlassLikeInteractionDecorator>
+		<Border Height="8" />
+		<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+			<Border Width="8" />
+			<decorators:LiquidGlassLikeInteractionDecorator>
+				<Button
+					Height="30"
+					Padding="8,0"
+					helpers:CapsuleShapeHelper.ShapeIntoCapsule="True"
+					Click="OnCapsuleButtonClick"
+					Content="Default Button with capsule shape" />
+			</decorators:LiquidGlassLikeInteractionDecorator>
+			<Border Width="8" />
+			<decorators:LiquidGlassLikeInteractionDecorator>
+				<Button
+					Width="30"
+					Height="30"
+					helpers:CapsuleShapeHelper.ShapeIntoCapsule="True"
+					Content="+"
+					FontFamily="Microsoft Sans Serif"
+					FontSize="24" />
+			</decorators:LiquidGlassLikeInteractionDecorator>
+		</StackPanel>
+		<Border Height="8" />
+		<Button Click="OnShowOverflowWindowButtonClick" Content="OverflowWindow" />
+		<Border Height="8" />
+		<controls:ComboBox
+			Width="90"
+			MinHeight="30"
+			VerticalContentAlignment="Center">
+			<controls:ComboBox.Resources>
+				<Style TargetType="ComboBoxItem">
+					<Setter Property="MinHeight" Value="30" />
+					<Setter Property="VerticalContentAlignment" Value="Center" />
+				</Style>
+			</controls:ComboBox.Resources>
+			<ComboBoxItem Content="lorem" />
+			<ComboBoxItem Content="ipsum" />
+			<ComboBoxItem Content="sit" />
+			<ComboBoxItem Content="amet" />
+		</controls:ComboBox>
+	</StackPanel>
 </Window>

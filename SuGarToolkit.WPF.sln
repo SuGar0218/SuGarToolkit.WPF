@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.37216.2
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11819.183 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuGarToolkit.WPF.GalleryApp", "SuGarToolkit.WPF.GalleryApp\SuGarToolkit.WPF.GalleryApp.csproj", "{B7804C23-D144-43EB-A564-DA9B1A411B1E}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuGarToolkit.WPF.Controls.Windows", "SuGarToolkit.WPF.Controls.Windows\SuGarToolkit.WPF.Controls.Windows.csproj", "{E9F16564-9B67-4768-A530-B6FE758F6125}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuGarToolkit.WPF.Helpers", "SuGarToolkit.WPF.Helpers\SuGarToolkit.WPF.Helpers.csproj", "{9D31FA74-FEB5-4F27-AAC3-A39A9B55CC98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuGarToolkit.WPF.Controls", "SuGarToolkit.WPF.Controls\SuGarToolkit.WPF.Controls.csproj", "{216F4D85-A44B-41E3-B64F-CFE7C7CF96E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9D31FA74-FEB5-4F27-AAC3-A39A9B55CC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D31FA74-FEB5-4F27-AAC3-A39A9B55CC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D31FA74-FEB5-4F27-AAC3-A39A9B55CC98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{216F4D85-A44B-41E3-B64F-CFE7C7CF96E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{216F4D85-A44B-41E3-B64F-CFE7C7CF96E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{216F4D85-A44B-41E3-B64F-CFE7C7CF96E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{216F4D85-A44B-41E3-B64F-CFE7C7CF96E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
