@@ -22,7 +22,7 @@ public class ComboBox : System.Windows.Controls.ComboBox
             Duration = TimeSpan.FromSeconds(0.382),
             EasingFunction = new PowerEase
             {
-                Power = 5,
+                Power = 6,
                 EasingMode = EasingMode.EaseOut
             }
         };
