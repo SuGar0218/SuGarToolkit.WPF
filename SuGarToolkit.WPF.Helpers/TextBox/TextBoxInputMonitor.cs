@@ -18,8 +18,8 @@ public partial class TextBoxInputMonitor : IDisposable
     public void Dispose()
     {
         TargetTextBox.TextChanged -= OnTextBoxTextChanged;
-        TextCompositionManager.AddPreviewTextInputStartHandler(TargetTextBox, OnTextCompositionStart);
-        TextCompositionManager.AddPreviewTextInputHandler(TargetTextBox, OnTextCompositionComplete);
+        TextCompositionManager.RemovePreviewTextInputStartHandler(TargetTextBox, OnTextCompositionStart);
+        TextCompositionManager.RemovePreviewTextInputHandler(TargetTextBox, OnTextCompositionComplete);
     }
 
     #region 附加事件 TextReallyChanged
