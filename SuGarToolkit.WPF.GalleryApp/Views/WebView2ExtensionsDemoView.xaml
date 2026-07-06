@@ -1,0 +1,51 @@
+﻿<UserControl
+	x:Class="SuGarToolkit.WPF.GalleryApp.Views.WebView2ExtensionsDemoView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:SuGarToolkit.WPF.GalleryApp.Views"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:webview2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+	xmlns:webview2ex="clr-namespace:SuGarToolkit.WPF.Extensions.WebView2;assembly=SuGarToolkit.WPF.Extensions.WebView2"
+	mc:Ignorable="d">
+
+	<UserControl.Resources>
+		<Style TargetType="Button">
+			<Setter Property="MinHeight" Value="30" />
+			<Setter Property="MinWidth" Value="90" />
+		</Style>
+		<Style TargetType="TextBox">
+			<Setter Property="MinHeight" Value="30" />
+			<Setter Property="MinWidth" Value="90" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+	</UserControl.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="auto" />
+		</Grid.RowDefinitions>
+		<TextBox Grid.Row="0" Text="{Binding Source, Mode=TwoWay, ElementName=webView}" />
+		<webview2:WebView2
+			x:Name="webView"
+			Grid.Row="1"
+			webview2ex:WebView2SelectionChangedListener.SelectionChanged="OnWebViewSelectionChanged"
+			Source="https://www.microsoft.com/" />
+		<DockPanel Grid.Row="2" MaxHeight="200">
+			<StackPanel Orientation="Horizontal">
+				<Button Click="OnSelectAllButtonClick" Content="Select all" />
+				<Button Click="OnUnselectAllButtonClick" Content="Unselect all" />
+				<ToggleButton
+					Content="Listen selected text"
+					DockPanel.Dock="Left"
+					IsChecked="{Binding (webview2ex:WebView2SelectionChangedListener.IsEnabled), Mode=TwoWay, ElementName=webView}" />
+			</StackPanel>
+			<TextBox
+				AcceptsReturn="True"
+				IsReadOnly="True"
+				Text="{Binding (webview2ex:WebView2SelectionChangedListener.SelectedText), Mode=TwoWay, ElementName=webView}" />
+		</DockPanel>
+	</Grid>
+</UserControl>

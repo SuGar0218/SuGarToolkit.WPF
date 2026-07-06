@@ -87,5 +87,7 @@
 			<ComboBoxItem Content="sit" />
 			<ComboBoxItem Content="amet" />
 		</controls:ComboBox>
+		<Border Height="8" />
+		<Button Click="OnWebView2ExnteionsButtonClick" Content="WebView2 Extensions" />
 	</StackPanel>
 </Window>

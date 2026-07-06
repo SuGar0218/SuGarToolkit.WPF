@@ -21,9 +21,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4022.49" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SuGarToolkit.WPF.Controls.Decorators\SuGarToolkit.WPF.Controls.Decorators.csproj" />
     <ProjectReference Include="..\SuGarToolkit.WPF.Controls.Windows\SuGarToolkit.WPF.Controls.Windows.csproj" />
     <ProjectReference Include="..\SuGarToolkit.WPF.Controls\SuGarToolkit.WPF.Controls.csproj" />
+    <ProjectReference Include="..\SuGarToolkit.WPF.Extensions.WebView2\SuGarToolkit.WPF.Extensions.WebView2.csproj" />
     <ProjectReference Include="..\SuGarToolkit.WPF.Helpers\SuGarToolkit.WPF.Helpers.csproj" />
   </ItemGroup>
 

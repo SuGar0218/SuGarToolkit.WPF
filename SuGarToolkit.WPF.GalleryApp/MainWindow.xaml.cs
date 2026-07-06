@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using SuGarToolkit.WPF.GalleryApp.Views;
+
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -35,5 +37,16 @@ public partial class MainWindow : Window
     private void OnShowOverflowWindowButtonClick(object sender, RoutedEventArgs e)
     {
         new SampleOverflowWindow().Show();
+    }
+
+    private void OnWebView2ExnteionsButtonClick(object sender, RoutedEventArgs e)
+    {
+        new Window
+        {
+            Width = 1024,
+            Height = 768,
+            Content = new WebView2ExtensionsDemoView()
+        }
+        .Show();
     }
 }
