@@ -1,0 +1,109 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:converters="clr-namespace:SuGarToolkit.WPF.Helpers.Converters;assembly=SuGarToolkit.WPF.Helpers"
+	xmlns:local="clr-namespace:SuGarToolkit.WPF.Controls.Layout">
+	<Style TargetType="local:HeaderBodyFooterView">
+		<Setter Property="HeaderBackground" Value="#F0F0F0" />
+		<Setter Property="HeaderSeparatorBrush" Value="#D0D0D0" />
+		<Setter Property="HeaderSeparatorThickness" Value="1" />
+		<Setter Property="FooterBackground" Value="#F0F0F0" />
+		<Setter Property="FooterSeparatorBrush" Value="#D0D0D0" />
+		<Setter Property="FooterSeparatorThickness" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="local:HeaderBodyFooterView">
+					<Border
+						Padding="{TemplateBinding Padding}"
+						Background="{TemplateBinding Background}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}">
+						<DockPanel>
+							<DockPanel.Resources>
+								<converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
+								<ControlTemplate x:Key="SimpleContentControlTemplate" TargetType="ContentControl">
+									<Border
+										Padding="{TemplateBinding Padding}"
+										Background="{TemplateBinding Background}"
+										BorderBrush="{TemplateBinding BorderBrush}"
+										BorderThickness="{TemplateBinding BorderThickness}">
+										<ContentPresenter
+											HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+											Content="{TemplateBinding Content}"
+											ContentTemplate="{TemplateBinding ContentTemplate}"
+											ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+									</Border>
+								</ControlTemplate>
+							</DockPanel.Resources>
+
+							<ContentControl
+								x:Name="PART_HeaderContentControl"
+								HorizontalContentAlignment="{TemplateBinding HorizontalHeaderAlignment}"
+								VerticalContentAlignment="{TemplateBinding VerticalHeaderAlignment}"
+								Background="{TemplateBinding HeaderBackground}"
+								BorderBrush="{TemplateBinding HeaderSeparatorBrush}"
+								Content="{TemplateBinding Header}"
+								ContentTemplate="{TemplateBinding HeaderTemplate}"
+								ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+								Template="{StaticResource SimpleContentControlTemplate}">
+								<ContentControl.BorderThickness>
+									<Binding
+										Converter="{StaticResource DoubleToThicknessConverter}"
+										Path="HeaderSeparatorThickness"
+										RelativeSource="{RelativeSource Mode=TemplatedParent}">
+										<Binding.ConverterParameter>
+											<converters:ThicknessSides>Bottom</converters:ThicknessSides>
+										</Binding.ConverterParameter>
+									</Binding>
+								</ContentControl.BorderThickness>
+							</ContentControl>
+
+							<ContentControl
+								x:Name="PART_FooterContentControl"
+								HorizontalContentAlignment="{TemplateBinding HorizontalFooterAlignment}"
+								VerticalContentAlignment="{TemplateBinding VerticalFooterAlignment}"
+								Background="{TemplateBinding FooterBackground}"
+								BorderBrush="{TemplateBinding FooterSeparatorBrush}"
+								Content="{TemplateBinding Footer}"
+								ContentTemplate="{TemplateBinding FooterTemplate}"
+								ContentTemplateSelector="{TemplateBinding FooterTemplateSelector}"
+								Template="{StaticResource SimpleContentControlTemplate}">
+								<ContentControl.BorderThickness>
+									<Binding
+										Converter="{StaticResource DoubleToThicknessConverter}"
+										Path="FooterSeparatorThickness"
+										RelativeSource="{RelativeSource Mode=TemplatedParent}">
+										<Binding.ConverterParameter>
+											<converters:ThicknessSides>Top</converters:ThicknessSides>
+										</Binding.ConverterParameter>
+									</Binding>
+								</ContentControl.BorderThickness>
+							</ContentControl>
+
+							<ContentControl
+								x:Name="PART_BodyContentControl"
+								HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+								VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+								Content="{TemplateBinding Content}"
+								ContentTemplate="{TemplateBinding ContentTemplate}"
+								ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+								Template="{StaticResource SimpleContentControlTemplate}" />
+						</DockPanel>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="Orientation" Value="Vertical">
+							<Setter TargetName="PART_HeaderContentControl" Property="DockPanel.Dock" Value="Top" />
+							<Setter TargetName="PART_FooterContentControl" Property="DockPanel.Dock" Value="Bottom" />
+						</Trigger>
+						<Trigger Property="Orientation" Value="Horizontal">
+							<Setter TargetName="PART_HeaderContentControl" Property="DockPanel.Dock" Value="Left" />
+							<Setter TargetName="PART_FooterContentControl" Property="DockPanel.Dock" Value="Right" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+</ResourceDictionary>

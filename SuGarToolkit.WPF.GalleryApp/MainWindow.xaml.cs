@@ -15,7 +15,7 @@ public partial class MainWindow : Window
 
     private void TextBox_TextReallyChanged(object sender, EventArgs e)
     {
-        TextBox textBox = (TextBox) sender;
+        TextBox textBox = (TextBox)sender;
         Debug.WriteLine($"TextReallyChanged: {textBox.Text}");
     }
 
@@ -46,6 +46,17 @@ public partial class MainWindow : Window
             Width = 1024,
             Height = 768,
             Content = new WebView2ExtensionsDemoView()
+        }
+        .Show();
+    }
+
+    private void OnShowHeaderBodyFooterViewButtonClick(object sender, RoutedEventArgs e)
+    {
+        new Window
+        {
+            Width = 480,
+            Height = 320,
+            Content = new HeaderBodyFooterViewDemoView()
         }
         .Show();
     }

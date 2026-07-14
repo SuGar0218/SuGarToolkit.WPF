@@ -89,5 +89,7 @@
 		</controls:ComboBox>
 		<Border Height="8" />
 		<Button Click="OnWebView2ExnteionsButtonClick" Content="WebView2 Extensions" />
+		<Border Height="8" />
+		<Button Content="HeaderBodyFooterView" Click="OnShowHeaderBodyFooterViewButtonClick" />
 	</StackPanel>
 </Window>
