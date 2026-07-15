@@ -4,6 +4,12 @@
 	xmlns:converters="clr-namespace:SuGarToolkit.WPF.Helpers.Converters;assembly=SuGarToolkit.WPF.Helpers"
 	xmlns:local="clr-namespace:SuGarToolkit.WPF.Controls.Layout">
 	<Style TargetType="local:HeaderBodyFooterView">
+		<Setter Property="HorizontalHeaderAlignment" Value="Stretch" />
+		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+		<Setter Property="HorizontalFooterAlignment" Value="Stretch" />
+		<Setter Property="VerticalHeaderAlignment" Value="Stretch" />
+		<Setter Property="VerticalContentAlignment" Value="Stretch" />
+		<Setter Property="VerticalFooterAlignment" Value="Stretch" />
 		<Setter Property="HeaderBackground" Value="#F0F0F0" />
 		<Setter Property="HeaderSeparatorBrush" Value="#D0D0D0" />
 		<Setter Property="HeaderSeparatorThickness" Value="1" />
@@ -91,6 +97,7 @@
 								Template="{StaticResource SimpleContentControlTemplate}" />
 						</DockPanel>
 					</Border>
+
 					<ControlTemplate.Triggers>
 						<Trigger Property="Orientation" Value="Vertical">
 							<Setter TargetName="PART_HeaderContentControl" Property="DockPanel.Dock" Value="Top" />
