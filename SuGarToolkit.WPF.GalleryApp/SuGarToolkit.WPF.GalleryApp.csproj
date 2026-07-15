@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SuGarToolkit.WPF.Controls.Decorators\SuGarToolkit.WPF.Controls.Decorators.csproj" />
+    <ProjectReference Include="..\SuGarToolkit.WPF.Controls.Layout\SuGarToolkit.WPF.Controls.Layout.csproj" />
     <ProjectReference Include="..\SuGarToolkit.WPF.Controls.Windows\SuGarToolkit.WPF.Controls.Windows.csproj" />
     <ProjectReference Include="..\SuGarToolkit.WPF.Controls\SuGarToolkit.WPF.Controls.csproj" />
     <ProjectReference Include="..\SuGarToolkit.WPF.Extensions.WebView2\SuGarToolkit.WPF.Extensions.WebView2.csproj" />
