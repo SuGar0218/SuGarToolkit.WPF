@@ -4,6 +4,9 @@
 	xmlns:converters="clr-namespace:SuGarToolkit.WPF.Helpers.Converters;assembly=SuGarToolkit.WPF.Helpers"
 	xmlns:local="clr-namespace:SuGarToolkit.WPF.Controls.Layout">
 	<Style TargetType="local:HeaderBodyFooterView">
+		<Style.Resources>
+			<converters:CollapseIfNullConverter x:Key="CollapseIfNullConverter" />
+		</Style.Resources>
 		<Setter Property="HorizontalHeaderAlignment" Value="Stretch" />
 		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 		<Setter Property="HorizontalFooterAlignment" Value="Stretch" />
@@ -52,7 +55,9 @@
 								Content="{TemplateBinding Header}"
 								ContentTemplate="{TemplateBinding HeaderTemplate}"
 								ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
-								Template="{StaticResource SimpleContentControlTemplate}">
+								Template="{StaticResource SimpleContentControlTemplate}"
+								Visibility="{TemplateBinding Header,
+								                             Converter={StaticResource CollapseIfNullConverter}}">
 								<ContentControl.BorderThickness>
 									<Binding
 										Converter="{StaticResource DoubleToThicknessConverter}"
@@ -74,7 +79,9 @@
 								Content="{TemplateBinding Footer}"
 								ContentTemplate="{TemplateBinding FooterTemplate}"
 								ContentTemplateSelector="{TemplateBinding FooterTemplateSelector}"
-								Template="{StaticResource SimpleContentControlTemplate}">
+								Template="{StaticResource SimpleContentControlTemplate}"
+								Visibility="{TemplateBinding Footer,
+								                             Converter={StaticResource CollapseIfNullConverter}}">
 								<ContentControl.BorderThickness>
 									<Binding
 										Converter="{StaticResource DoubleToThicknessConverter}"
