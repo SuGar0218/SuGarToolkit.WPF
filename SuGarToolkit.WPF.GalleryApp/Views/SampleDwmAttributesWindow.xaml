@@ -9,7 +9,6 @@
 	Title="SampleDwmAttributesWindow"
 	Width="800"
 	Height="450"
-	windows:DwmWindowAttributes.AutoDarkMode="True"
 	windows:DwmWindowAttributes.BorderColor="Red"
 	windows:DwmWindowAttributes.TitleBarColor="Pink"
 	windows:DwmWindowAttributes.TitleTextColor="Red"

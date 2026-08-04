@@ -28,4 +28,7 @@ internal partial class SampleDwmAttributeChromedWindowViewModel : ObservableObje
 
     [ObservableProperty]
     public partial WindowCornerRoundness CornerRoundness { get; set; } = WindowCornerRoundness.Normal;
+
+    [ObservableProperty]
+    public partial bool IsDarkMode { get; set; }
 }

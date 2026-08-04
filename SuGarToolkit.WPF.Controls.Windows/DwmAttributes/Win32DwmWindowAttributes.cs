@@ -17,8 +17,8 @@ public class Win32DwmWindowAttributes
     public static Color? GetTitleTextColor(nint hwnd) => GetDwmColorAttribute(hwnd, DWMWINDOWATTRIBUTE.DWMWA_TEXT_COLOR);
     public static void SetTitleTextColor(nint hwnd, Color? color) => SetDwmColorAttribute(hwnd, DWMWINDOWATTRIBUTE.DWMWA_TEXT_COLOR, color);
 
-    public static bool GetAutoDarkMode(nint hwnd) => GetDwmBoolAttribute(hwnd, DWMWINDOWATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE);
-    public static void SetAutoDarkMode(nint hwnd, bool enable) => SetDwmBoolAttribute(hwnd, DWMWINDOWATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE, enable);
+    public static bool GetIsDarkMode(nint hwnd) => GetDwmBoolAttribute(hwnd, DWMWINDOWATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE);
+    public static void SetIsDarkMode(nint hwnd, bool enable) => SetDwmBoolAttribute(hwnd, DWMWINDOWATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE, enable);
 
     public static WindowCornerRoundness GetCornerRoundness(nint hwnd) => (WindowCornerRoundness)GetDwmIntAttribute(hwnd, DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE);
     public static void SetCornerRoundness(nint hwnd, WindowCornerRoundness cornerRoundness) => SetDwmIntAttribute(hwnd, DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE, (int)cornerRoundness);

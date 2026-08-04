@@ -10,8 +10,8 @@
 	Width="800"
 	Height="450"
 	d:DataContext="{d:DesignInstance local:SampleDwmAttributeChromedWindowViewModel}"
-	windows:DwmWindowAttributes.AutoDarkMode="True"
 	windows:DwmWindowAttributes.CornerRoundness="{Binding CornerRoundness, Mode=OneWay}"
+	windows:DwmWindowAttributes.IsDarkMode="{Binding IsDarkMode, Mode=OneWay}"
 	windows:DwmWindowAttributes.SystemBackdrop="{Binding SystemBackdrop, Mode=OneWay}"
 	Background="Transparent"
 	mc:Ignorable="d">
@@ -49,6 +49,8 @@
 				</DataTemplate>
 			</ComboBox.ItemTemplate>
 		</ComboBox>
+		<Rectangle Height="8" />
+		<CheckBox Content="Is dark mode" IsChecked="{Binding IsDarkMode, Mode=TwoWay}" />
 	</StackPanel>
 
 </Window>
