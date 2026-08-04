@@ -2,7 +2,13 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="SampleOverflowWindow.xaml.cs">
+    <Compile Update="Views\SampleDwmAttributesChromedWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SampleDwmAttributesWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SampleOverflowWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\HeaderBodyFooterViewDemoView.xaml.cs">

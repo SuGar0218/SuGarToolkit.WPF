@@ -60,4 +60,14 @@ public partial class MainWindow : Window
         }
         .Show();
     }
+
+    private void OnDwmWindowAttribute1ButtonClick(object sender, RoutedEventArgs e)
+    {
+        new SampleDwmAttributesWindow().Show();
+    }
+
+    private void OnDwmWindowAttribute2ButtonClick(object sender, RoutedEventArgs e)
+    {
+        new SampleDwmAttributesChromedWindow().Show();
+    }
 }

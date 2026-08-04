@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SuGarToolkit.WPF.GalleryApp
+namespace SuGarToolkit.WPF.GalleryApp.Views
 {
     /// <summary>
-    /// SampleOverflowWindow.xaml 的交互逻辑
+    /// SampleDwmAttributesWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class SampleOverflowWindow : Window
+    public partial class SampleDwmAttributesWindow : Window
     {
-        public SampleOverflowWindow()
+        public SampleDwmAttributesWindow()
         {
             InitializeComponent();
         }

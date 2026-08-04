@@ -1,0 +1,54 @@
+﻿<Window
+	x:Class="SuGarToolkit.WPF.GalleryApp.Views.SampleDwmAttributesChromedWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:SuGarToolkit.WPF.GalleryApp.Views"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:windows="clr-namespace:SuGarToolkit.WPF.Controls.Windows;assembly=SuGarToolkit.WPF.Controls.Windows"
+	Title="SampleDwmAttributeChromedWindow"
+	Width="800"
+	Height="450"
+	d:DataContext="{d:DesignInstance local:SampleDwmAttributeChromedWindowViewModel}"
+	windows:DwmWindowAttributes.AutoDarkMode="True"
+	windows:DwmWindowAttributes.CornerRoundness="{Binding CornerRoundness, Mode=OneWay}"
+	windows:DwmWindowAttributes.SystemBackdrop="{Binding SystemBackdrop, Mode=OneWay}"
+	Background="Transparent"
+	mc:Ignorable="d">
+
+	<Window.Resources>
+		<Style TargetType="ComboBox">
+			<Setter Property="MinWidth" Value="90" />
+			<Setter Property="MinHeight" Value="30" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+	</Window.Resources>
+
+	<WindowChrome.WindowChrome>
+		<WindowChrome GlassFrameThickness="-1" NonClientFrameEdges="Left,Right,Bottom" />
+	</WindowChrome.WindowChrome>
+
+	<StackPanel
+		HorizontalAlignment="Center"
+		VerticalAlignment="Center"
+		Background="White">
+		<TextBlock Text="SystemBackdrop" />
+		<ComboBox ItemsSource="{Binding SystemBackdrops}" SelectedItem="{Binding SystemBackdrop, Mode=TwoWay}">
+			<ComboBox.ItemTemplate>
+				<DataTemplate DataType="windows:WindowSystemBackdrop">
+					<TextBlock Text="{Binding}" />
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<Rectangle Height="8" />
+		<TextBlock Text="CornerRoundnesses" />
+		<ComboBox ItemsSource="{Binding CornerRoundnesses}" SelectedItem="{Binding CornerRoundness, Mode=TwoWay}">
+			<ComboBox.ItemTemplate>
+				<DataTemplate DataType="windows:WindowSystemBackdrop">
+					<TextBlock Text="{Binding}" />
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+	</StackPanel>
+
+</Window>

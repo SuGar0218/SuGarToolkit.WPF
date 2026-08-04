@@ -90,6 +90,9 @@
 		<Border Height="8" />
 		<Button Click="OnWebView2ExnteionsButtonClick" Content="WebView2 Extensions" />
 		<Border Height="8" />
-		<Button Content="HeaderBodyFooterView" Click="OnShowHeaderBodyFooterViewButtonClick" />
+		<Button Click="OnShowHeaderBodyFooterViewButtonClick" Content="HeaderBodyFooterView" />
+		<Border Height="8" />
+		<Button Click="OnDwmWindowAttribute1ButtonClick" Content="DwmWindowAttributes sample 1" />
+		<Button Click="OnDwmWindowAttribute2ButtonClick" Content="DwmWindowAttributes sample 2" />
 	</StackPanel>
 </Window>
