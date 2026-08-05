@@ -78,10 +78,10 @@ public class DwmWindowAttributes
         }
     }
 
-    public static bool GetIsDarkMode(Window target) => (bool)target.GetValue(AutoDarkModeProperty);
-    public static void SetIsDarkMode(Window target, bool value) => target.SetValue(AutoDarkModeProperty, value);
+    public static bool GetIsDarkMode(Window target) => (bool)target.GetValue(IsDarkModeProperty);
+    public static void SetIsDarkMode(Window target, bool value) => target.SetValue(IsDarkModeProperty, value);
 
-    public static readonly DependencyProperty AutoDarkModeProperty = DependencyProperty.RegisterAttached(
+    public static readonly DependencyProperty IsDarkModeProperty = DependencyProperty.RegisterAttached(
         "IsDarkMode",
         typeof(bool),
         typeof(DwmWindowAttributes),
