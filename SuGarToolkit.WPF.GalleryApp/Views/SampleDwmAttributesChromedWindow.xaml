@@ -28,29 +28,36 @@
 		<WindowChrome GlassFrameThickness="-1" NonClientFrameEdges="Left,Right,Bottom" />
 	</WindowChrome.WindowChrome>
 
-	<StackPanel
-		HorizontalAlignment="Center"
-		VerticalAlignment="Center"
-		Background="White">
-		<TextBlock Text="SystemBackdrop" />
-		<ComboBox ItemsSource="{Binding SystemBackdrops}" SelectedItem="{Binding SystemBackdrop, Mode=TwoWay}">
-			<ComboBox.ItemTemplate>
-				<DataTemplate DataType="windows:WindowSystemBackdrop">
-					<TextBlock Text="{Binding}" />
-				</DataTemplate>
-			</ComboBox.ItemTemplate>
-		</ComboBox>
-		<Rectangle Height="8" />
-		<TextBlock Text="CornerRoundnesses" />
-		<ComboBox ItemsSource="{Binding CornerRoundnesses}" SelectedItem="{Binding CornerRoundness, Mode=TwoWay}">
-			<ComboBox.ItemTemplate>
-				<DataTemplate DataType="windows:WindowSystemBackdrop">
-					<TextBlock Text="{Binding}" />
-				</DataTemplate>
-			</ComboBox.ItemTemplate>
-		</ComboBox>
-		<Rectangle Height="8" />
-		<CheckBox Content="Is dark mode" IsChecked="{Binding IsDarkMode, Mode=TwoWay}" />
-	</StackPanel>
+	<Border
+		Margin="16"
+		Padding="16"
+		HorizontalAlignment="Right"
+		VerticalAlignment="Bottom"
+		Background="White"
+		BorderBrush="#10000000"
+		BorderThickness="1"
+		CornerRadius="{x:Static SystemParameters.WindowCornerRadius}">
+		<StackPanel>
+			<TextBlock Text="SystemBackdrop" />
+			<ComboBox ItemsSource="{Binding SystemBackdrops}" SelectedItem="{Binding SystemBackdrop, Mode=TwoWay}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate DataType="windows:WindowSystemBackdrop">
+						<TextBlock Text="{Binding}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<Rectangle Height="8" />
+			<TextBlock Text="CornerRoundnesses" />
+			<ComboBox ItemsSource="{Binding CornerRoundnesses}" SelectedItem="{Binding CornerRoundness, Mode=TwoWay}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate DataType="windows:WindowSystemBackdrop">
+						<TextBlock Text="{Binding}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<Rectangle Height="8" />
+			<CheckBox Content="Is dark mode" IsChecked="{Binding IsDarkMode, Mode=TwoWay}" />
+		</StackPanel>
+	</Border>
 
 </Window>

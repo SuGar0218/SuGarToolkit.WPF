@@ -92,7 +92,7 @@
 		<Border Height="8" />
 		<Button Click="OnShowHeaderBodyFooterViewButtonClick" Content="HeaderBodyFooterView" />
 		<Border Height="8" />
-		<Button Click="OnDwmWindowAttribute1ButtonClick" Content="DwmWindowAttributes sample 1" />
-		<Button Click="OnDwmWindowAttribute2ButtonClick" Content="DwmWindowAttributes sample 2" />
+		<Button Click="OnDwmWindowAttribute1ButtonClick" Content="DwmWindowAttributes sample 1: Customize border and title bar color" />
+		<Button Click="OnDwmWindowAttribute2ButtonClick" Content="DwmWindowAttributes sample 2: Acrylic, Mica, MicaAlt" />
 	</StackPanel>
 </Window>
