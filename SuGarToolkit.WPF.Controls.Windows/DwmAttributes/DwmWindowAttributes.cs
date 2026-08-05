@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 
@@ -20,14 +21,16 @@ public class DwmWindowAttributes
     {
         Window window = (Window)d;
         Color? color = (Color?)e.NewValue;
-        if (window.IsInitialized)
+        nint handle = RetrieveWindowHandle(window);
+        if (handle != nint.Zero)
         {
             Win32DwmWindowAttributes.SetBorderColor(RetrieveWindowHandle(window), color);
+            return;
         }
-        else
+        ExecuteOnceAfterSourceInitialized(window, () =>
         {
-            ExecuteOnceAfterSourceInitialized(window, () => Win32DwmWindowAttributes.SetBorderColor(RetrieveWindowHandle(window), color));
-        }
+            Win32DwmWindowAttributes.SetBorderColor(RetrieveWindowHandle(window), color);
+        });
     }
 
     public static Color? GetTitleBarColor(Window target) => (Color?)target.GetValue(TitleBarColorProperty);
@@ -44,14 +47,16 @@ public class DwmWindowAttributes
     {
         Window window = (Window)d;
         Color? color = (Color?)e.NewValue;
-        if (window.IsInitialized)
+        nint handle = RetrieveWindowHandle(window);
+        if (handle != nint.Zero)
         {
             Win32DwmWindowAttributes.SetTitleBarColor(RetrieveWindowHandle(window), color);
+            return;
         }
-        else
+        ExecuteOnceAfterSourceInitialized(window, () =>
         {
-            ExecuteOnceAfterSourceInitialized(window, () => Win32DwmWindowAttributes.SetTitleBarColor(RetrieveWindowHandle(window), color));
-        }
+            Win32DwmWindowAttributes.SetTitleBarColor(RetrieveWindowHandle(window), color);
+        });
     }
 
     public static Color? GetTitleTextColor(Window target) => (Color?)target.GetValue(TitleTextColorProperty);
@@ -68,14 +73,16 @@ public class DwmWindowAttributes
     {
         Window window = (Window)d;
         Color? color = (Color?)e.NewValue;
-        if (window.IsInitialized)
+        nint handle = RetrieveWindowHandle(window);
+        if (handle != nint.Zero)
         {
             Win32DwmWindowAttributes.SetTitleTextColor(RetrieveWindowHandle(window), color);
+            return;
         }
-        else
+        ExecuteOnceAfterSourceInitialized(window, () =>
         {
-            ExecuteOnceAfterSourceInitialized(window, () => Win32DwmWindowAttributes.SetTitleTextColor(RetrieveWindowHandle(window), color));
-        }
+            Win32DwmWindowAttributes.SetTitleTextColor(RetrieveWindowHandle(window), color);
+        });
     }
 
     public static bool GetIsDarkMode(Window target) => (bool)target.GetValue(IsDarkModeProperty);
@@ -85,21 +92,23 @@ public class DwmWindowAttributes
         "IsDarkMode",
         typeof(bool),
         typeof(DwmWindowAttributes),
-        new PropertyMetadata(default(bool), OnAutoDarkModeChanged)
+        new PropertyMetadata(default(bool), OnIsDarkModeChanged)
     );
 
-    private static void OnAutoDarkModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnIsDarkModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         Window window = (Window)d;
         bool enable = (bool)e.NewValue;
-        if (window.IsInitialized)
+        nint handle = RetrieveWindowHandle(window);
+        if (handle != nint.Zero)
         {
             Win32DwmWindowAttributes.SetIsDarkMode(RetrieveWindowHandle(window), enable);
+            return;
         }
-        else
+        ExecuteOnceAfterSourceInitialized(window, () =>
         {
-            ExecuteOnceAfterSourceInitialized(window, () => Win32DwmWindowAttributes.SetIsDarkMode(RetrieveWindowHandle(window), enable));
-        }
+            Win32DwmWindowAttributes.SetIsDarkMode(RetrieveWindowHandle(window), enable);
+        });
     }
 
     public static WindowCornerRoundness GetCornerRoundness(Window target) => (WindowCornerRoundness)target.GetValue(CornerRoundnessProperty);
@@ -117,14 +126,7 @@ public class DwmWindowAttributes
     {
         Window window = (Window)d;
         WindowCornerRoundness cornerRoundness = (WindowCornerRoundness)e.NewValue;
-        if (window.IsInitialized)
-        {
-            Win32DwmWindowAttributes.SetCornerRoundness(RetrieveWindowHandle(window), cornerRoundness);
-        }
-        else
-        {
-            ExecuteOnceAfterSourceInitialized(window, () => Win32DwmWindowAttributes.SetCornerRoundness(RetrieveWindowHandle(window), cornerRoundness));
-        }
+        Win32DwmWindowAttributes.SetCornerRoundness(RetrieveWindowHandle(window), cornerRoundness);
     }
 
     public static WindowSystemBackdrop GetSystemBackdrop(Window target) => (WindowSystemBackdrop)target.GetValue(SystemBackdropProperty);
@@ -141,17 +143,20 @@ public class DwmWindowAttributes
     {
         Window window = (Window)d;
         WindowSystemBackdrop systemBackdrop = (WindowSystemBackdrop)e.NewValue;
-        if (window.IsInitialized)
+        nint handle = RetrieveWindowHandle(window);
+        if (handle != nint.Zero)
         {
             Win32DwmWindowAttributes.SetSystemBackdrop(RetrieveWindowHandle(window), systemBackdrop);
+            return;
         }
-        else
+        ExecuteOnceAfterSourceInitialized(window, () =>
         {
-            ExecuteOnceAfterSourceInitialized(window, () => Win32DwmWindowAttributes.SetSystemBackdrop(RetrieveWindowHandle(window), systemBackdrop));
-        }
+            Win32DwmWindowAttributes.SetSystemBackdrop(RetrieveWindowHandle(window), systemBackdrop);
+        });
     }
 
-    private static nint RetrieveWindowHandle(Window window) => (PresentationSource.FromVisual(window) as HwndSource)?.Handle ?? nint.Zero;
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static nint RetrieveWindowHandle(Window window) => new WindowInteropHelper(window).Handle;
 
     private static void ExecuteOnceAfterSourceInitialized(Window window, Action action)
     {
