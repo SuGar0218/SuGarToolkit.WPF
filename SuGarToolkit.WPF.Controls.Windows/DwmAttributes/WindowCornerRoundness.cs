@@ -1,6 +1,6 @@
 ﻿namespace SuGarToolkit.WPF.Controls.Windows;
 
-public enum WindowCornerRoundness
+public enum WindowCornerRoundness : uint
 {
     Default = 0,
     None = 1,

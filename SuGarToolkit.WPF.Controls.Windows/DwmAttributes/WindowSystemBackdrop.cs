@@ -1,6 +1,6 @@
 ﻿namespace SuGarToolkit.WPF.Controls.Windows;
 
-public enum WindowSystemBackdrop
+public enum WindowSystemBackdrop : uint
 {
     Auto,
     None,
