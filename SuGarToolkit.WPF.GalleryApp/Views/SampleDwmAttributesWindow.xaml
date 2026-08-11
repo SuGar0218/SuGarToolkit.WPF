@@ -6,10 +6,17 @@
 	xmlns:local="clr-namespace:SuGarToolkit.WPF.GalleryApp.Views"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:windows="clr-namespace:SuGarToolkit.WPF.Controls.Windows;assembly=SuGarToolkit.WPF.Controls.Windows"
+	x:Name="This"
 	Title="SampleDwmAttributesWindow"
 	Width="800"
 	Height="450"
 	windows:DwmWindowAttributes.BorderColor="Red"
 	windows:DwmWindowAttributes.TitleBarColor="Pink"
 	windows:DwmWindowAttributes.TitleTextColor="Red"
-	mc:Ignorable="d" />
+	mc:Ignorable="d">
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+		<CheckBox Content="CanMinimize" IsChecked="{Binding (windows:SystemCaptionButtons.CanMinimize), Mode=TwoWay, ElementName=This}" />
+		<CheckBox Content="CanMaximize" IsChecked="{Binding (windows:SystemCaptionButtons.CanMaximize), Mode=TwoWay, ElementName=This}" />
+		<CheckBox Content="IsCaptionButtonsVisible" IsChecked="{Binding (windows:SystemCaptionButtons.IsVisible), Mode=TwoWay, ElementName=This}" />
+	</StackPanel>
+</Window>
