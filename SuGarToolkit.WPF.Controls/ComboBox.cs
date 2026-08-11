@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
@@ -31,15 +30,11 @@ public class ComboBox : System.Windows.Controls.ComboBox
             Children = [_popupExpandAnimation]
         };
         _popupClip = new RectangleGeometry();
-        NameScope.SetNameScope(this, new NameScope());
-        RegisterName(nameof(_popupClip), _popupClip);
         Storyboard.SetTargetName(_popupExpandAnimation, nameof(_popupClip));
         Storyboard.SetTargetProperty(_popupExpandAnimation, new PropertyPath(RectangleGeometry.RectProperty));
     }
 
-    private Popup? _popup;
-    private Border? _dropDownBorder;
-    private FrameworkElement? _popupContentRoot;
+    private Popup? PART_Popup;
     private readonly Storyboard _popupExpandStoryboard;
     private readonly RectAnimation _popupExpandAnimation;
     private readonly RectangleGeometry _popupClip;
@@ -47,10 +42,15 @@ public class ComboBox : System.Windows.Controls.ComboBox
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        _popup = GetTemplateChild("PART_Popup") as Popup;
-        _popupContentRoot = GetTemplateChild("shadow") as FrameworkElement;
-        _dropDownBorder = GetTemplateChild("dropDownBorder") as Border;
+
+        PART_Popup = GetTemplateChild("PART_Popup") as Popup;
         _popupExpandStoryboard.Completed += OnPopupExpandStoryboardCompleted;
+
+        if (NameScope.GetNameScope(this) is null)
+        {
+            NameScope.SetNameScope(this, new NameScope());
+        }
+        RegisterName(nameof(_popupClip), _popupClip);
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -62,27 +62,24 @@ public class ComboBox : System.Windows.Controls.ComboBox
 
     private void OnPopupExpandStoryboardCompleted(object? sender, EventArgs e)
     {
-        if (_popupContentRoot != null)
-        {
-            _popupContentRoot.Clip = null;
-        }
+        PART_Popup?.Child?.Clip = null;
     }
 
     protected override void OnDropDownOpened(EventArgs e)
     {
         base.OnDropDownOpened(e);
-        if (_popup is null)
+        if (PART_Popup is null)
             return;
 
-        Visual? popupRootVisual = _dropDownBorder is null ? null : GetVisualTreeRoot(_dropDownBorder) as Visual;
+        Visual? popupRootVisual = PART_Popup.Child is null ? null : GetVisualTreeRoot(PART_Popup.Child) as Visual;
         Visual? selectedVisual = SelectedIndex == -1 ? null : ItemContainerGenerator.ContainerFromIndex(SelectedIndex) as Visual;
         Point selectedVisualPosition = selectedVisual?.TransformToVisual(popupRootVisual).Transform(ZeroPoint) ?? EmptyPoint;
         Point selfScreenPosition = PointToScreen(ZeroPoint);
         selfScreenPosition = ToDipPoint(selfScreenPosition);
         if (selectedVisual != null)
         {
-            _popup.HorizontalOffset = selfScreenPosition.X;
-            _popup.VerticalOffset = selfScreenPosition.Y - selectedVisualPosition.Y;
+            PART_Popup.HorizontalOffset = selfScreenPosition.X;
+            PART_Popup.VerticalOffset = selfScreenPosition.Y - selectedVisualPosition.Y;
 
             // If an UIElement inside popup is selected, move it to the center of ComboBox.
             if (SelectedIndex != -1 && selectedVisual is UIElement selectedElement)
@@ -92,38 +89,38 @@ public class ComboBox : System.Windows.Controls.ComboBox
                 {
                     selectedItemHeight += frameworkElement.Margin.Top + frameworkElement.Margin.Bottom;
                 }
-                _popup.VerticalOffset += (ActualHeight - selectedItemHeight) / 2;
+                PART_Popup.VerticalOffset += (ActualHeight - selectedItemHeight) / 2;
             }
         }
         else
         {
-            _popup.HorizontalOffset = selfScreenPosition.X;
-            _popup.VerticalOffset = selfScreenPosition.Y;
+            PART_Popup.HorizontalOffset = selfScreenPosition.X;
+            PART_Popup.VerticalOffset = selfScreenPosition.Y;
         }
-        if (_popupContentRoot != null)
+        if (PART_Popup.Child is FrameworkElement popupContentRoot)
         {
-            if (_popupContentRoot.IsLoaded)
+            if (popupContentRoot.IsLoaded)
             {
                 PrepareAnimation();
             }
             else
             {
-                _popupContentRoot.Loaded += OnPopupContentRootLoaded;
+                popupContentRoot.Loaded += OnPopupContentRootLoaded;
             }
             void OnPopupContentRootLoaded(object sender, RoutedEventArgs args)
             {
-                _popupContentRoot.Loaded -= OnPopupContentRootLoaded;
+                popupContentRoot.Loaded -= OnPopupContentRootLoaded;
                 PrepareAnimation();
             }
             void PrepareAnimation()
             {
-                _popupContentRoot.Clip = _popupClip;
+                popupContentRoot.Clip = _popupClip;
                 _popupExpandAnimation.From = new Rect(
                     new Point(0, selectedVisualPosition.Y),
-                    new Size(_popupContentRoot.RenderSize.Width, ActualHeight));
+                    new Size(popupContentRoot.RenderSize.Width, ActualHeight));
                 _popupExpandAnimation.To = new Rect(
                     ZeroPoint,
-                    _popupContentRoot.RenderSize);
+                    popupContentRoot.RenderSize);
                 _popupExpandStoryboard.Begin(this);
             }
         }
@@ -143,18 +140,18 @@ public class ComboBox : System.Windows.Controls.ComboBox
     private double _dpiScaleX = 1.0;
     private double _dpiScaleY = 1.0;
 
-    private Point ToDipPoint(Point point) => new Point
+    private Point ToDipPoint(Point point) => new()
     {
         X = point.X / _dpiScaleX,
         Y = point.Y / _dpiScaleY
     };
 
-    private Point ToPixelPoint(Point point) => new Point
+    private Point ToPixelPoint(Point point) => new()
     {
         X = point.X * _dpiScaleX,
         Y = point.Y * _dpiScaleY
     };
 
-    private static readonly Point ZeroPoint = new Point(0, 0);
-    private static readonly Point EmptyPoint = new Point(-1, -1);
+    private static readonly Point ZeroPoint = new(0, 0);
+    private static readonly Point EmptyPoint = new(-1, -1);
 }
