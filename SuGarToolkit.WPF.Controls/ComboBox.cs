@@ -55,12 +55,9 @@ public class ComboBox : System.Windows.Controls.ComboBox
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        if (PresentationSource.FromVisual(this) is HwndSource hwndSource)
-        {
-            Matrix transformToDevice = hwndSource.CompositionTarget.TransformToDevice;
-            _dpiScaleX = transformToDevice.M11;
-            _dpiScaleY = transformToDevice.M22;
-        }
+        DpiScale dpiScale = VisualTreeHelper.GetDpi(this);
+        _dpiScaleX = dpiScale.DpiScaleX;
+        _dpiScaleY = dpiScale.DpiScaleY;
     }
 
     private void OnPopupExpandStoryboardCompleted(object? sender, EventArgs e)
@@ -86,6 +83,17 @@ public class ComboBox : System.Windows.Controls.ComboBox
         {
             _popup.HorizontalOffset = selfScreenPosition.X;
             _popup.VerticalOffset = selfScreenPosition.Y - selectedVisualPosition.Y;
+
+            // If an UIElement inside popup is selected, move it to the center of ComboBox.
+            if (SelectedIndex != -1 && selectedVisual is UIElement selectedElement)
+            {
+                double selectedItemHeight = selectedElement.RenderSize.Height;
+                if (selectedElement is FrameworkElement frameworkElement)
+                {
+                    selectedItemHeight += frameworkElement.Margin.Top + frameworkElement.Margin.Bottom;
+                }
+                _popup.VerticalOffset += (ActualHeight - selectedItemHeight) / 2;
+            }
         }
         else
         {
